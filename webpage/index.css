@@ -1,13 +1,13 @@
 @font-face {
   font-family: "pop";
-  src: url("https://cdn.jsdelivr.net/gh/Fanvins030/demo2Repository/pop.woff") format("woff");
+  src: url("https://cdn.jsdelivr.net/gh/Fanvins030/KarRoyIDCardWebpage/static/fonts/pop.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "w9";
-  src: url("https://cdn.jsdelivr.net/gh/Fanvins030/demo2Repository/w9.woff") format("woff");
+  src: url("https://cdn.jsdelivr.net/gh/Fanvins030/KarRoyIDCardWebpage/static/fonts/w9.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }

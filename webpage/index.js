@@ -11,7 +11,7 @@ function select() {
 
     var bg = document.createElement("img");
     bg.crossOrigin = "Anonymous";
-    bg.src = "https://cdn.jsdelivr.net/gh/Fanvins030/demo2Repository/bg.png";
+    bg.src = "https://cdn.jsdelivr.net/gh/Fanvins030/KarRoyIDCardWebpage/static/images/bg.png";
 
     var homepage = document.querySelector("input").value;
 
