@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KarRoy - 凯源夏秋岛蟹圆身份证</title>
+    <link rel="icon" href="./favicon.ico">
+    <!-- =====CSS===== -->
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./index.css">
+    <!-- =====CSS===== -->
+</head>
+
+<body>
+    <div class="header">
+        <div class="left">logo</div>
+        <div class="right">
+            <div class="card">
+                <a href="https://weibo.com/tfwangjunkai" target="_blank">王俊凯微博</a>
+            </div>
+            <div class="card">
+                <a href="https://weibo.com/tfwangyuan" target="_blank">王源微博</a>
+            </div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="container">
+            <div class="left">
+                <h1>输入您的微博主页地址</h1>
+                <div class="input-wrap">
+                    <input type="text" placeholder="如：https://weibo.com/u/2531987600">
+                </div>
+                <div class="btn_select" onclick="select()">蟹圆身份证查询</div>
+                <div class="btn_save" onclick="save()">保存到本地</div>
+            </div>
+            <div class="right">
+                <img class="show" src="" alt="">
+                <img class="loading hidden" src="https://cdn.jsdelivr.net/gh/Fanvins030/demo2Repository/default.png"
+                    alt="">
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div>Copyright © 2021 KarRoy 凯源夏秋岛蟹圆身份证 粤ICP备2021023953号</div>
+        <div>仅供学习，不可商用 新浪微博：@-萌虎牙宠奶源-</div>
+    </div>
+
+    <span class="w9">&nbsp;</span>
+    <span class="pop">&nbsp;</span>
+    <canvas></canvas>
+
+
+    <!-- 您的浏览器不支持 HTML5 canvas 标签 -->
+    <!-- 用到的是Canvas画布，所以是无法通过开发者工具自行修改信息并另存图片的 -->
+    <!-- 采用登记ID-微博主页-岛民身份号码三者关联的绑定方式 -->
+
+    <!-- =====JS===== -->
+    <script src="./secret.config.js"></script>
+    <script src="./assets/js/ajax.js"></script>
+    <script src="./index.js"></script>
+    <!-- =====JS===== -->
+</body>
+
+</html>
