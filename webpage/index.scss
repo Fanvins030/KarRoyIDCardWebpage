@@ -1,3 +1,23 @@
+// 主题色
+$--brand-LIGHT: #33d7d3; // 亮蓝绿色
+$--brand-DARK: #1ba4a1; // 暗蓝绿色
+
+// 背景色
+$--bg-WHITE: #fff; // 白色
+$--bg-GREY: #f5f5f5; // 灰色
+$--bg-BLACK: #333; // 黑色
+
+// 文本色
+$--text-WHITE: #fff; // 白色
+
+// 线框色
+$--border-GREY: #ccc; // 灰色
+
+// 阴影色
+// $--shadow-GREY:
+
+/* ========================================================== */
+
 @font-face {
     font-family: "pop";
     src: url("https://cdn.jsdelivr.net/gh/Fanvins030/KarRoyIDCardWebpage/static/fonts/pop.woff") format("woff");
@@ -12,123 +32,188 @@
     font-style: normal;
 }
 
-body {
-    width: 95vw;
-    margin: 0 auto;
-}
-
 .w9 {
     position: absolute;
     font-family: "w9";
 }
+
 .pop {
     position: absolute;
     font-family: "pop";
 }
+
 .hidden {
     display: none;
 }
+
 canvas {
     letter-spacing: 5px;
     font-family: "w9,pop";
     position: absolute;
 }
 
-@media (min-width: 886px) {
-    body {
-        background: rgba(0, 206, 201, 0.8);
-    }
-}
-
-@media (max-width: 886px) {
-    body {
-        background: rgba(0, 206, 201, 0.8);
-    }
-}
-
 /* ========================================================== */
 
-.header {
-    line-height: 50px;
-    overflow: hidden;
+body {
+    width: 95vw;
+    margin: 0 auto;
+    background-color: $--brand-LIGHT;
+    .header {
+        height: 50px;
+        line-height: 50px;
+        overflow: hidden;
 
-    .left {
-        float: left;
+        .title {
+            color: $--text-WHITE;
+            font-size: 24px;
+            text-align: center;
+            font-family: w9;
+            text-shadow: 5px 5px 5px $--brand-DARK;
+        }
     }
 
-    .right {
-        float: right;
-    }
-}
+    .main {
+        margin: 30px auto 120px;
 
-.main {
-    width: 960px;
-    min-height: 100px;
-    margin: 150px auto;
+        .thanking {
+            padding-bottom: 30px;
+            margin: 0 auto;
+            text-align: center;
+            color: $--text-WHITE;
+        }
 
-    .container {
-        width: 960px;
-        height: 640px;
-        border-radius: 5px;
-        box-shadow: 0 24px 48px 0 rgba(0, 0, 0, 0.16);
-        background: #fff;
-        display: flex;
-        justify-content: space-evenly;
-
-        .left {
-            width: 50%;
-            padding: 100px 120px 100px 70px;
+        .container {
             box-sizing: border-box;
+            box-shadow: 0 24px 48px 0 rgba($color: $--brand-DARK, $alpha: 0.8);
+            background-color: $--bg-WHITE;
 
-            .input-wrap {
-                margin: 20px 0;
-                line-height: 30px;
-                background-color: #f5f5f5;
-                border: 1px solid transparent;
-                border-radius: 5px;
+            .left {
+                box-sizing: border-box;
 
-                &:hover {
-                    border: 1px solid #ccc;
+                .caption {
+                    font-size: 17px;
+                    font-weight: bold;
                 }
 
-                input {
-                    width: 100%;
-                    height: 100%;
+                .input-wrap {
+                    margin: 20px 0;
+                    line-height: 30px;
+                    background-color: $--bg-GREY;
+                    border: 1px solid transparent;
+                    border-radius: 5px;
+
+                    &:hover {
+                        border: 1px solid $--border-GREY;
+                    }
+
+                    input {
+                        width: 100%;
+                        height: 100%;
+                        line-height: 20px;
+                        outline: none;
+                        padding: 6px 12px;
+                        box-sizing: border-box;
+                        border: none;
+                        background-color: transparent;
+                        color: $--bg-BLACK;
+                        font-size: 13px;
+                        display: inline-block;
+                    }
+                }
+
+                .btn_select,
+                .btn_save {
                     line-height: 20px;
-                    outline: none;
-                    padding: 6px 12px;
-                    box-sizing: border-box;
-                    border: none;
-                    background-color: transparent;
-                    color: #333;
-                    font-size: 13px;
-                    display: inline-block;
+                    padding: 5px;
+                    margin-bottom: 10px;
+                    background-color: rgba($color: $--brand-DARK, $alpha: 0.8);
+                    text-align: center;
+                    color: $--text-WHITE;
+                    border: 1px solid transparent;
+                    border-radius: 5px;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: $--brand-DARK;
+                    }
                 }
             }
 
-            .btn_select {
-                line-height: 20px;
-                padding: 5px;
-                background: #1ba4a1;
-                text-align: center;
-                color: #fff;
-                border: 1px solid transparent;
-                border-radius: 5px;
-            }
-        }
-
-        .right {
-            width: 50%;
-            padding: 30px 40px;
-            box-sizing: border-box;
-
-            img {
-                width: 400px;
+            .right {
+                box-sizing: border-box;
             }
         }
     }
+
+    .footer {
+        margin: 0 auto;
+        text-align: center;
+        color: $--text-WHITE;
+    }
 }
 
-.footer {
-    text-align: center;
+// 电脑
+@media (min-width: 960px) {
+    .main {
+        // width: 900px;
+        width: 500px;
+        min-height: 100px;
+    }
+    .main .container {
+        // width: 900px;
+        width: 500px;
+        padding: 50px;
+        border-radius: 5px;
+        // display: flex;
+        // justify-content: space-evenly;
+    }
+    .main .container .left {
+        // width: 50%;
+        width: 100%;
+        // padding-right: 50px;
+    }
+    .main .container .right {
+        // width: 50%;
+        width: 100%;
+    }
+}
+
+// 平板
+@media (min-width: 600px) and (max-width: 960px) {
+    .main {
+        width: 80vw;
+        min-height: 100px;
+    }
+    .main .container {
+        width: 500px;
+        margin: 0 auto;
+        padding: 50px;
+        border-radius: 5px;
+    }
+    .main .container .left {
+        width: 100%;
+        margin: 0 auto 20px;
+    }
+    .main .container .right {
+        width: 100%;
+    }
+}
+
+// 手机
+@media (max-width: 600px) {
+    .main {
+        width: 90vw;
+        min-height: 100px;
+    }
+    .main .container {
+        width: 90vw;
+        padding: 35px;
+        border-radius: 5px;
+    }
+    .main .container .left {
+        width: 100%;
+    }
+    .main .container .right {
+        width: 100%;
+    }
 }

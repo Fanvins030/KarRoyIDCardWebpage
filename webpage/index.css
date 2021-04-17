@@ -1,3 +1,4 @@
+/* ========================================================== */
 @font-face {
   font-family: "pop";
   src: url("https://cdn.jsdelivr.net/gh/Fanvins030/KarRoyIDCardWebpage/static/fonts/pop.woff") format("woff");
@@ -10,11 +11,6 @@
   src: url("https://cdn.jsdelivr.net/gh/Fanvins030/KarRoyIDCardWebpage/static/fonts/w9.woff") format("woff");
   font-weight: normal;
   font-style: normal;
-}
-
-body {
-  width: 95vw;
-  margin: 0 auto;
 }
 
 .w9 {
@@ -37,55 +33,54 @@ canvas {
   position: absolute;
 }
 
-@media (min-width: 886px) {
-  body {
-    background: rgba(0, 206, 201, 0.8);
-  }
-}
-
-@media (max-width: 886px) {
-  body {
-    background: rgba(0, 206, 201, 0.8);
-  }
-}
-
 /* ========================================================== */
-.header {
+body {
+  width: 95vw;
+  margin: 0 auto;
+  background-color: #33d7d3;
+}
+
+body .header {
+  height: 50px;
   line-height: 50px;
   overflow: hidden;
 }
 
-.header .left {
-  float: left;
+body .header .title {
+  color: #fff;
+  font-size: 24px;
+  text-align: center;
+  font-family: w9;
+  text-shadow: 5px 5px 5px #1ba4a1;
 }
 
-.header .right {
-  float: right;
+body .main {
+  margin: 30px auto 120px;
 }
 
-.main {
-  width: 960px;
-  min-height: 100px;
-  margin: 150px auto;
+body .main .thanking {
+  padding-bottom: 30px;
+  margin: 0 auto;
+  text-align: center;
+  color: #fff;
 }
 
-.main .container {
-  width: 960px;
-  height: 640px;
-  border-radius: 5px;
-  box-shadow: 0 24px 48px 0 rgba(0, 0, 0, 0.16);
-  background: #fff;
-  display: flex;
-  justify-content: space-evenly;
+body .main .container {
+  box-sizing: border-box;
+  box-shadow: 0 24px 48px 0 rgba(27, 164, 161, 0.8);
+  background-color: #fff;
 }
 
-.main .container .left {
-  width: 50%;
-  padding: 100px 120px 100px 70px;
+body .main .container .left {
   box-sizing: border-box;
 }
 
-.main .container .left .input-wrap {
+body .main .container .left .caption {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+body .main .container .left .input-wrap {
   margin: 20px 0;
   line-height: 30px;
   background-color: #f5f5f5;
@@ -93,11 +88,11 @@ canvas {
   border-radius: 5px;
 }
 
-.main .container .left .input-wrap:hover {
+body .main .container .left .input-wrap:hover {
   border: 1px solid #ccc;
 }
 
-.main .container .left .input-wrap input {
+body .main .container .left .input-wrap input {
   width: 100%;
   height: 100%;
   line-height: 20px;
@@ -111,26 +106,86 @@ canvas {
   display: inline-block;
 }
 
-.main .container .left .btn_select {
+body .main .container .left .btn_select,
+body .main .container .left .btn_save {
   line-height: 20px;
   padding: 5px;
-  background: #1ba4a1;
+  margin-bottom: 10px;
+  background-color: rgba(27, 164, 161, 0.8);
   text-align: center;
   color: #fff;
   border: 1px solid transparent;
   border-radius: 5px;
+  cursor: pointer;
 }
 
-.main .container .right {
-  width: 50%;
-  padding: 30px 40px;
+body .main .container .left .btn_select:hover,
+body .main .container .left .btn_save:hover {
+  background-color: #1ba4a1;
+}
+
+body .main .container .right {
   box-sizing: border-box;
 }
 
-.main .container .right img {
-  width: 400px;
+body .footer {
+  margin: 0 auto;
+  text-align: center;
+  color: #fff;
 }
 
-.footer {
-  text-align: center;
+@media (min-width: 960px) {
+  .main {
+    width: 500px;
+    min-height: 100px;
+  }
+  .main .container {
+    width: 500px;
+    padding: 50px;
+    border-radius: 5px;
+  }
+  .main .container .left {
+    width: 100%;
+  }
+  .main .container .right {
+    width: 100%;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 960px) {
+  .main {
+    width: 80vw;
+    min-height: 100px;
+  }
+  .main .container {
+    width: 500px;
+    margin: 0 auto;
+    padding: 50px;
+    border-radius: 5px;
+  }
+  .main .container .left {
+    width: 100%;
+    margin: 0 auto 20px;
+  }
+  .main .container .right {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .main {
+    width: 90vw;
+    min-height: 100px;
+  }
+  .main .container {
+    width: 90vw;
+    padding: 35px;
+    border-radius: 5px;
+  }
+  .main .container .left {
+    width: 100%;
+  }
+  .main .container .right {
+    width: 100%;
+  }
 }
