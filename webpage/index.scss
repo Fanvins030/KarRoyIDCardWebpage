@@ -9,12 +9,10 @@ $--bg-BLACK: #333; // 黑色
 
 // 文本色
 $--text-WHITE: #fff; // 白色
+$--text-GREY: #b6b6b6; // 灰色
 
 // 线框色
 $--border-GREY: #ccc; // 灰色
-
-// 阴影色
-// $--shadow-GREY:
 
 /* ========================================================== */
 
@@ -42,57 +40,58 @@ $--border-GREY: #ccc; // 灰色
     font-family: "pop";
 }
 
-.hidden {
-    display: none;
-}
-
 canvas {
     letter-spacing: 5px;
-    font-family: "w9,pop";
+    font-family: "w9,pop,Microsoft YaHei";
     position: absolute;
 }
 
 /* ========================================================== */
 
 body {
-    width: 95vw;
-    margin: 0 auto;
+    position: relative;
+    cursor: default;
     background-color: $--brand-LIGHT;
+
     .header {
-        height: 50px;
-        line-height: 50px;
         overflow: hidden;
 
         .title {
+            height: 50px;
+            line-height: 50px;
             color: $--text-WHITE;
             font-size: 24px;
             text-align: center;
             font-family: w9;
             text-shadow: 5px 5px 5px $--brand-DARK;
         }
-    }
-
-    .main {
-        margin: 30px auto 120px;
 
         .thanking {
-            padding-bottom: 30px;
+            padding-top: 30px;
             margin: 0 auto;
             text-align: center;
             color: $--text-WHITE;
         }
+    }
 
-        .container {
+    .main {
+        margin: 30px auto 100px;
+
+        .card {
+            border-radius: 5px;
+
             box-sizing: border-box;
             box-shadow: 0 24px 48px 0 rgba($color: $--brand-DARK, $alpha: 0.8);
             background-color: $--bg-WHITE;
 
             .left {
+                width: 100%;
                 box-sizing: border-box;
 
                 .caption {
-                    font-size: 17px;
-                    font-weight: bold;
+                    font-size: 14px;
+                    color: $--brand-DARK;
+                    font-family: w9;
                 }
 
                 .input-wrap {
@@ -101,12 +100,13 @@ body {
                     background-color: $--bg-GREY;
                     border: 1px solid transparent;
                     border-radius: 5px;
+                    position: relative;
 
                     &:hover {
                         border: 1px solid $--border-GREY;
                     }
 
-                    input {
+                    input.address {
                         width: 100%;
                         height: 100%;
                         line-height: 20px;
@@ -116,30 +116,49 @@ body {
                         border: none;
                         background-color: transparent;
                         color: $--bg-BLACK;
-                        font-size: 13px;
+                        font-size: 12px;
                         display: inline-block;
+                    }
+
+                    .clean {
+                        color: $--text-GREY;
+                        font-size: 18px;
+                        position: absolute;
+                        right: 10px;
+                        top: 0;
+                        cursor: pointer;
                     }
                 }
 
                 .btn_select,
                 .btn_save {
+                    font-family: w9;
                     line-height: 20px;
                     padding: 5px;
                     margin-bottom: 10px;
-                    background-color: rgba($color: $--brand-DARK, $alpha: 0.8);
                     text-align: center;
-                    color: $--text-WHITE;
                     border: 1px solid transparent;
                     border-radius: 5px;
-                    cursor: pointer;
 
-                    &:hover {
+                    &.disable {
+                        background-color: rgba($color: $--bg-BLACK, $alpha: 0.3);
+                        color: $--text-WHITE;
+                        cursor: not-allowed;
+                    }
+
+                    &:not(.disable) {
+                        background-color: rgba($color: $--brand-DARK, $alpha: 0.8);
+                        color: $--text-WHITE;
+                        cursor: pointer;
+                    }
+                    &.pc:not(.disable) {
                         background-color: $--brand-DARK;
                     }
                 }
             }
 
             .right {
+                width: 100%;
                 box-sizing: border-box;
             }
         }
@@ -148,33 +167,20 @@ body {
     .footer {
         margin: 0 auto;
         text-align: center;
-        color: $--text-WHITE;
+        color: rgba($color: $--text-WHITE, $alpha: 0.8);
+        padding: 25px 0;
+        border-top: 1px solid rgba($color: $--brand-DARK, $alpha: 0.4);
     }
 }
 
 // 电脑
 @media (min-width: 960px) {
     .main {
-        // width: 900px;
         width: 500px;
-        min-height: 100px;
     }
-    .main .container {
-        // width: 900px;
+    .main .card {
         width: 500px;
         padding: 50px;
-        border-radius: 5px;
-        // display: flex;
-        // justify-content: space-evenly;
-    }
-    .main .container .left {
-        // width: 50%;
-        width: 100%;
-        // padding-right: 50px;
-    }
-    .main .container .right {
-        // width: 50%;
-        width: 100%;
     }
 }
 
@@ -182,20 +188,11 @@ body {
 @media (min-width: 600px) and (max-width: 960px) {
     .main {
         width: 80vw;
-        min-height: 100px;
     }
-    .main .container {
+    .main .card {
         width: 500px;
         margin: 0 auto;
         padding: 50px;
-        border-radius: 5px;
-    }
-    .main .container .left {
-        width: 100%;
-        margin: 0 auto 20px;
-    }
-    .main .container .right {
-        width: 100%;
     }
 }
 
@@ -203,17 +200,9 @@ body {
 @media (max-width: 600px) {
     .main {
         width: 90vw;
-        min-height: 100px;
     }
-    .main .container {
+    .main .card {
         width: 90vw;
         padding: 35px;
-        border-radius: 5px;
-    }
-    .main .container .left {
-        width: 100%;
-    }
-    .main .container .right {
-        width: 100%;
     }
 }

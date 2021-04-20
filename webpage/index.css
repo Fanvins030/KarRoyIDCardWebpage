@@ -23,30 +23,26 @@
   font-family: "pop";
 }
 
-.hidden {
-  display: none;
-}
-
 canvas {
   letter-spacing: 5px;
-  font-family: "w9,pop";
+  font-family: "w9,pop,Microsoft YaHei";
   position: absolute;
 }
 
 /* ========================================================== */
 body {
-  width: 95vw;
-  margin: 0 auto;
+  position: relative;
+  cursor: default;
   background-color: #33d7d3;
 }
 
 body .header {
-  height: 50px;
-  line-height: 50px;
   overflow: hidden;
 }
 
 body .header .title {
+  height: 50px;
+  line-height: 50px;
   color: #fff;
   font-size: 24px;
   text-align: center;
@@ -54,45 +50,49 @@ body .header .title {
   text-shadow: 5px 5px 5px #1ba4a1;
 }
 
-body .main {
-  margin: 30px auto 120px;
-}
-
-body .main .thanking {
-  padding-bottom: 30px;
+body .header .thanking {
+  padding-top: 30px;
   margin: 0 auto;
   text-align: center;
   color: #fff;
 }
 
-body .main .container {
+body .main {
+  margin: 30px auto 100px;
+}
+
+body .main .card {
+  border-radius: 5px;
   box-sizing: border-box;
   box-shadow: 0 24px 48px 0 rgba(27, 164, 161, 0.8);
   background-color: #fff;
 }
 
-body .main .container .left {
+body .main .card .left {
+  width: 100%;
   box-sizing: border-box;
 }
 
-body .main .container .left .caption {
-  font-size: 17px;
-  font-weight: bold;
+body .main .card .left .caption {
+  font-size: 14px;
+  color: #1ba4a1;
+  font-family: w9;
 }
 
-body .main .container .left .input-wrap {
+body .main .card .left .input-wrap {
   margin: 20px 0;
   line-height: 30px;
   background-color: #f5f5f5;
   border: 1px solid transparent;
   border-radius: 5px;
+  position: relative;
 }
 
-body .main .container .left .input-wrap:hover {
+body .main .card .left .input-wrap:hover {
   border: 1px solid #ccc;
 }
 
-body .main .container .left .input-wrap input {
+body .main .card .left .input-wrap input.address {
   width: 100%;
   height: 100%;
   line-height: 20px;
@@ -102,90 +102,89 @@ body .main .container .left .input-wrap input {
   border: none;
   background-color: transparent;
   color: #333;
-  font-size: 13px;
+  font-size: 12px;
   display: inline-block;
 }
 
-body .main .container .left .btn_select,
-body .main .container .left .btn_save {
-  line-height: 20px;
-  padding: 5px;
-  margin-bottom: 10px;
-  background-color: rgba(27, 164, 161, 0.8);
-  text-align: center;
-  color: #fff;
-  border: 1px solid transparent;
-  border-radius: 5px;
+body .main .card .left .input-wrap .clean {
+  color: #b6b6b6;
+  font-size: 18px;
+  position: absolute;
+  right: 10px;
+  top: 0;
   cursor: pointer;
 }
 
-body .main .container .left .btn_select:hover,
-body .main .container .left .btn_save:hover {
+body .main .card .left .btn_select,
+body .main .card .left .btn_save {
+  font-family: w9;
+  line-height: 20px;
+  padding: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: 5px;
+}
+
+body .main .card .left .btn_select.disable,
+body .main .card .left .btn_save.disable {
+  background-color: rgba(51, 51, 51, 0.3);
+  color: #fff;
+  cursor: not-allowed;
+}
+
+body .main .card .left .btn_select:not(.disable),
+body .main .card .left .btn_save:not(.disable) {
+  background-color: rgba(27, 164, 161, 0.8);
+  color: #fff;
+  cursor: pointer;
+}
+
+body .main .card .left .btn_select.pc:not(.disable),
+body .main .card .left .btn_save.pc:not(.disable) {
   background-color: #1ba4a1;
 }
 
-body .main .container .right {
+body .main .card .right {
+  width: 100%;
   box-sizing: border-box;
 }
 
 body .footer {
   margin: 0 auto;
   text-align: center;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 25px 0;
+  border-top: 1px solid rgba(27, 164, 161, 0.4);
 }
 
 @media (min-width: 960px) {
   .main {
     width: 500px;
-    min-height: 100px;
   }
-  .main .container {
+  .main .card {
     width: 500px;
     padding: 50px;
-    border-radius: 5px;
-  }
-  .main .container .left {
-    width: 100%;
-  }
-  .main .container .right {
-    width: 100%;
   }
 }
 
 @media (min-width: 600px) and (max-width: 960px) {
   .main {
     width: 80vw;
-    min-height: 100px;
   }
-  .main .container {
+  .main .card {
     width: 500px;
     margin: 0 auto;
     padding: 50px;
-    border-radius: 5px;
-  }
-  .main .container .left {
-    width: 100%;
-    margin: 0 auto 20px;
-  }
-  .main .container .right {
-    width: 100%;
   }
 }
 
 @media (max-width: 600px) {
   .main {
     width: 90vw;
-    min-height: 100px;
   }
-  .main .container {
+  .main .card {
     width: 90vw;
     padding: 35px;
-    border-radius: 5px;
-  }
-  .main .container .left {
-    width: 100%;
-  }
-  .main .container .right {
-    width: 100%;
   }
 }
