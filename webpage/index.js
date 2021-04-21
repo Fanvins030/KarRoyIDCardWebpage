@@ -2,13 +2,12 @@ var nickname = "";
 var number = "";
 var current = null;
 
-document.querySelector(".test").innerHTML = "bbbbb" + navigator.userAgent;
-
 //资源加载完毕后执行
 window.onload = function () {
-    document.querySelector(".header").removeAttribute("hidden")
-    document.querySelector(".main").removeAttribute("hidden")
-    document.querySelector(".footer").removeAttribute("hidden")
+    document.querySelector(".welcome").style.display = "none";
+    document.querySelector(".header").removeAttribute("hidden");
+    document.querySelector(".main").removeAttribute("hidden");
+    document.querySelector(".footer").removeAttribute("hidden");
 }
 
 // 判断当前设备是否是PC端

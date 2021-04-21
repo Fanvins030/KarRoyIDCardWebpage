@@ -31,9 +31,16 @@ canvas {
 
 /* ========================================================== */
 body {
-  position: relative;
-  cursor: default;
   background-color: #33d7d3;
+  cursor: default;
+}
+
+body .welcome {
+  height: 90vh;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 body .header {
@@ -41,8 +48,8 @@ body .header {
 }
 
 body .header .title {
-  height: 50px;
-  line-height: 50px;
+  height: 70px;
+  line-height: 70px;
   color: #fff;
   font-size: 24px;
   text-align: center;
