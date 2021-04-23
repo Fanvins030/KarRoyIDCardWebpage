@@ -10,6 +10,8 @@ $--bg-BLACK: #333; // 黑色
 // 文本色
 $--text-WHITE: #fff; // 白色
 $--text-GREY: #b6b6b6; // 灰色
+$--text-WARMING: red; //红色
+$--text-LINK: blue; //红色
 
 // 线框色
 $--border-GREY: #ccc; // 灰色
@@ -51,11 +53,13 @@ canvas {
 body {
     background-color: $--brand-LIGHT;
     cursor: default;
+    -webkit-tap-highlight-color: transparent;
 
     .welcome {
-        height: 90vh;
+        height: 95vh;
         color: $--text-WHITE;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
     }
@@ -74,7 +78,7 @@ body {
         }
 
         .thanking {
-            padding-top: 30px;
+            padding-top: 10px;
             margin: 0 auto;
             text-align: center;
             color: $--text-WHITE;
@@ -82,16 +86,105 @@ body {
     }
 
     .main {
-        margin: 30px auto 100px;
+        margin: 50px auto 80px;
+        position: relative;
+
+        .tab {
+            display: flex;
+            justify-content: flex-start;
+            position: absolute;
+            top: -25px;
+            left: 0;
+
+            span {
+                height: 25px;
+                line-height: 25px;
+                padding: 0 15px;
+                background-color: rgba($color: $--brand-DARK, $alpha: 0.8);
+                color: $--text-WHITE;
+                font-family: w9;
+                text-align: center;
+                border-right: 1px solid $--brand-DARK;
+                border-radius: 5px 5px 0 0;
+                cursor: pointer;
+
+                & + span {
+                    border-left: none;
+                }
+
+                &.active {
+                    background-color: $--bg-WHITE;
+                    color: $--brand-DARK;
+                }
+            }
+        }
 
         .card {
-            border-radius: 5px;
-
+            border-radius: 0 5px 5px 5px;
             box-sizing: border-box;
             box-shadow: 0 24px 48px 0 rgba($color: $--brand-DARK, $alpha: 0.8);
             background-color: $--bg-WHITE;
 
-            .left {
+            &:not(.active) {
+                display: none;
+            }
+
+            &.product {
+                .controller {
+                    .input-wrap {
+                        margin: 20px 0;
+                    }
+                }
+            }
+
+            &.register {
+                .controller {
+                    .label {
+                        margin: 20px 0 10px 0;
+                        position: relative;
+
+                        &.require::before {
+                            content: "*";
+                            margin-right: 3px;
+                            color: $--text-WARMING;
+                            position: absolute;
+                            top: 2px;
+                            left: -10px;
+                        }
+
+                        &:nth-of-type(1) {
+                            margin-top: 0;
+                        }
+                    }
+
+                    .btn_submit {
+                        margin-top: 20px;
+                    }
+                }
+            }
+
+            &.message {
+                .controller {
+                    .input-wrap {
+                        margin: 20px 0;
+
+                        textarea {
+                            width: -webkit-fill-available;
+                            height: 50px;
+                            padding: 6px 32px 6px 12px;
+                            box-sizing: border-box;
+                            outline: none;
+                            border: none;
+                            background-color: transparent;
+                            overflow-y: hidden;
+                            font-size: 12px;
+                            font-family: auto;
+                        }
+                    }
+                }
+            }
+
+            .controller {
                 width: 100%;
                 box-sizing: border-box;
 
@@ -102,7 +195,6 @@ body {
                 }
 
                 .input-wrap {
-                    margin: 20px 0;
                     line-height: 30px;
                     background-color: $--bg-GREY;
                     border: 1px solid transparent;
@@ -113,7 +205,7 @@ body {
                         border: 1px solid $--border-GREY;
                     }
 
-                    input.address {
+                    input {
                         width: 100%;
                         height: 100%;
                         line-height: 20px;
@@ -137,12 +229,10 @@ body {
                     }
                 }
 
-                .btn_select,
-                .btn_save {
+                .button {
                     font-family: w9;
                     line-height: 20px;
                     padding: 5px;
-                    margin-bottom: 10px;
                     text-align: center;
                     border: 1px solid transparent;
                     border-radius: 5px;
@@ -164,9 +254,23 @@ body {
                 }
             }
 
-            .right {
+            .displayer {
                 width: 100%;
                 box-sizing: border-box;
+            }
+
+            .tip {
+                .attention {
+                    .text {
+                        color: $--text-WARMING;
+                    }
+
+                    .link {
+                        color: $--text-LINK;
+                        text-decoration: underline;
+                        cursor: pointer;
+                    }
+                }
             }
         }
     }
@@ -174,9 +278,9 @@ body {
     .footer {
         margin: 0 auto;
         text-align: center;
-        color: rgba($color: $--text-WHITE, $alpha: 0.8);
+        color: $--text-WHITE;
         padding: 25px 0;
-        border-top: 1px solid rgba($color: $--brand-DARK, $alpha: 0.4);
+        background: linear-gradient(180deg, rgba($color: $--bg-BLACK, $alpha: 0.1) -100%, transparent 50%);
     }
 }
 

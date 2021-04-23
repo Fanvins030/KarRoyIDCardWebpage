@@ -1,7 +1,9 @@
 var express = require("express");
 var server = express();
-var mysql = require("mysql");
-var { MY_PORT, MY_SQL } = require("./secret.config.js");
+var { conn, connect } = require("./module/sqlConn.js");
+var { MY_PORT } = require("./secret.config.js");
+var { user } = require("./module/sqlMap.js");
+var { resSend, deepCopy } = require("./module/assist.js");
 
 //设置允许跨域访问该服务.
 server.all('*', function (req, res, next) {
@@ -16,125 +18,44 @@ server.all('*', function (req, res, next) {
 server.listen(MY_PORT);
 console.log("已成功监听服务器端口");
 
-var conn;
-// 连接数据库
-function connect() {
-    conn = mysql.createConnection(MY_SQL);
-    conn.connect(handleError);  // 连接异常，自动重连
-    conn.on("error", handleError)   // 监听错误，2秒后重试
-}
-
-// 处理错误
-function handleError(err) {
-    if (err) {
-        console.log('err code:' + err.code);
-        if (err.code === 'PROTOCOL_CONNECTION_LOST' || err.code === 'PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR' || err.code === 'ETIMEDOUT' || err.code === 'ECONNRESET') {
-            connect();
-        }
-        else {
-            setTimeout(connect, 2000);
-        }
-    }
-}
-connect();
-
-// 格式化响应请求
-function resSend(res, result) {
-    if (typeof result === 'undefined') {
-        res.send({
-            code: '1',
-            msg: '操作失败'
-        })
-    }
-    else if (typeof result === "object") {
-        res.send(result)
-    }
-    else {
-        res.send({
-            code: '0',
-            result: result
-        })
-    }
-}
-
-// 判断是否为正确的JSON格式
-function isJSON(str) {
-    if (typeof str == 'string') {
-        try {
-            var obj = JSON.parse(str);
-            if (typeof obj == 'object' && obj) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (e) {
-            return false;
-        }
-    } else {
-        return false;
-    }
-}
-
-// 深拷贝（主要用于JSON格式化）
-function deepCopy(data) {
-    // 去除RowDataPacket
-    data = JSON.parse(JSON.stringify(data));
-    var newData = Array.isArray(data) ? [] : {};
-    for (var k in data) {
-        // 判断是否为对象类型
-        if (typeof (data[k]) == "object") {
-            newData[k] = deepCopy(data[k])
-        }
-        // 判断是否为正确的JSON格式
-        else if (isJSON(data[k])) {
-            newData[k] = JSON.parse(data[k])
-        }
-        // 普通类型
-        else {
-            newData[k] = data[k];
-        }
-    }
-    return newData;
-}
+var bodyParser = require("body-parser");
+server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({ extended: true }));
 
 // 获取用户列表
-server.get("/getList", function (req, res) {
-    var transData = req.query.homepage;
+server.post("/getList", function (req, res) {
+    var { homepage } = req.body;
 
-    conn.query(`SELECT id,homepage FROM tb_user`, function (err, result) {
+    conn.query(user.getInfo(homepage), function (err, result) {
+        if (err) {
+            console.log(err);
+            connect();
+        }
+        if (result.length == 1) {
+            console.log(result)
+            resSend(res, {
+                nickname: result[0].nickname,
+                attribute: result[0].attribute,
+                gender: result[0].gender,
+                number: result[0].number
+            })
+        } else {
+            console.log(result)
+            resSend(res, 'error')
+        }
+    })
+})
+
+// 上传留言
+server.post("/uploadComment", function (req, res) {
+    var { content } = req.body
+    conn.query(user.addComment(content), function (err, result) {
         if (err) {
             console.log(err);
             connect();
         }
         if (result) {
-            result = deepCopy(result);
-            for (var i = 0; i < result.length; i++) {
-                for (var j = 0; j < result[i].homepage.length; j++) {
-                    if (transData == result[i].homepage[j]) {
-                        conn.query(`SELECT * FROM tb_user WHERE id = ${result[i].id}`, function (err, result2) {
-                            if (err) {
-                                console.log(err);
-                                connect();
-                            }
-                            if (result2) {
-                                result2 = deepCopy(result2);
-                                console.log(result2)
-
-                                resSend(res, {
-                                    result: {
-                                        nickname: result2[0].nickname,
-                                        attribute: result2[0].attribute,
-                                        gender: result2[0].gender,
-                                        number: result2[0].number
-                                    }
-                                })
-                            }
-                        })
-                    } else {
-                        // console.log("夏秋岛岛民人口登记表中没有你的记录")
-                    }
-                }
-            }
+            resSend(res)
         }
     })
 })

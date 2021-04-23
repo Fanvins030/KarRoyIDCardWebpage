@@ -1,11 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KarRoy - 凯源夏秋岛蟹圆证查询</title>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?b314017aea396c6571a29e732ec51e3c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <meta name="referrer" content="no-referrer">
+    <title>凯源夏秋岛</title>
     <link rel="icon" href="./favicon.ico">
     <!-- =====CSS===== -->
     <link rel="stylesheet" href="./assets/css/base.css">
@@ -14,7 +24,9 @@
 </head>
 
 <body>
-    <div class="welcome">亲爱的蟹粉小汤圆，欢迎来到夏秋岛！</div>
+    <div class="welcome">
+        <div>正在加载中...请耐心等待哦(｡･ω･｡)ﾉ♡</div>
+    </div>
     <div class="header" hidden>
         <div class="title">夏秋岛</div>
         <div class="thanking">
@@ -23,35 +35,118 @@
         </div>
     </div>
     <div class="main" hidden>
-        <div class="card">
-            <div class="left">
-                <div class="caption">输入微博主页地址：</div>
+        <div class="tab">
+            <span class="product active" onclick="toggleTab('product')">蟹圆证</span>
+            <span class="register" onclick="toggleTab('register')">登记表</span>
+            <span class="message" onclick="toggleTab('message')">小纸条</span>
+        </div>
+
+        <!-- 蟹圆证 -->
+        <div class="card product active">
+            <div class="controller">
+                <div class="caption">☆输入微博主页地址：</div>
                 <div class="input-wrap">
-                    <input class="address" type="text" placeholder="如：https://weibo.com/u/2531987600"
+                    <input class="homepage" type="text" placeholder="如：https://weibo.com/u/2531987600"
                         oninput="validatorURL(this)">
-                    <div class="clean" hidden onclick="cleanInputValue('address')">×</div>
+                    <div class="clean" hidden onclick="cleanInput(this,'input.homepage','.btn_select')">×</div>
                 </div>
-                <div class="btn_select disable" onclick="select()">立即查询</div>
-                <div class="btn_save" hidden onclick="save()">保存到本地</div>
+                <div class="button btn_select disable" onclick="produce(this)">生成我的蟹圆证</div>
+                <div class="button btn_save" hidden onclick="save()">保存到本地</div>
             </div>
-            <div class="right">
+            <div class="displayer" hidden>
                 <img class="show" src="" alt="">
                 <img class="loading" hidden
                     src="https://cdn.jsdelivr.net/gh/Fanvins030/KarRoyIDCardWebpage/static/images/default.png" alt="">
             </div>
+
+            <div class="tip" hidden>
+                <div class="attention">
+                    <span class="text">※未登记的用户无法生成蟹圆证，请先提交申请，待审核通过后再来。</span>
+                    <span class="link" onclick="toggleTab('register')">我要登记</span>
+                </div>
+                <div class="content">抱歉，未查询到该地址的记录，无法生成蟹圆证，请检查是否正确输入主页地址。</div>
+            </div>
+        </div>
+
+        <!-- 登记表tab -->
+        <div class="card register" id="card">
+            <div class="controller">
+                <div class="label require">1、你是否领取过2017年的蟹圆身份证</div>
+                <!-- 上传Lofter蟹圆证截图（在旁边放一个i示例） -->
+                <div class="radio-wrap">
+                    <label>
+                        <input type="radio" name="hasCard" id="yes">有
+                    </label>
+                    <label>
+                        <input type="radio" name="hasCard" id="no">没有
+                    </label>
+                </div>
+                <!-- 这里要自己写一个css美化单选框 -->
+
+                <div class="label require">2、请上传你的凯源超话等级页面的截图</div>
+                <input type="file" name="" id="">
+                <!-- 这里要自己写一个css美化四方框+加号 -->
+
+                <div class="label require">3、请输入你的姓名</div>
+                <div class="input-wrap">
+                    <input class="nickName" type="text" placeholder="微博ID或昵称（是印在蟹圆证上的哦）" oninput="listenInput(this)">
+                    <div class="clean" hidden onclick="cleanInput(this,'input.nickName','.btn_submit')">×</div>
+                </div>
+
+                <div class="label require">4、请选择你的属性</div>
+                <div class="radio-wrap">
+                    <label>
+                        <input type="radio" name="attribute" id="kyo" checked>凯源唯
+                    </label>
+                    <label>
+                        <input type="radio" name="attribute" id="yko">源凯唯
+                    </label>
+                </div>
+                <!-- 这里要自己写一个css美化单选框 -->
+
+                <div class="label require">5、请选择你的性别</div>
+                <div class="radio-wrap">
+                    <label>
+                        <input type="radio" name="gender" id="female" checked>女
+                    </label>
+                    <label>
+                        <input type="radio" name="gender" id="male">男
+                    </label>
+                </div>
+                <!-- 这里要自己写一个css美化单选框 -->
+
+                <div class="label require">6、请复制粘贴你的微博主页地址</div>
+                <div class="input-wrap">
+                    <input class="address" type="text" placeholder="如：https://weibo.com/u/2531987600"
+                        oninput="listenInput(this)">
+                    <div class="clean" hidden onclick="cleanInput(this,'input.address','.btn_submit')">×</div>
+                </div>
+
+                <div class="button btn_submit disable" onclick="submit(this)">提交申请</div>
+            </div>
+        </div>
+
+        <!-- 小纸条 -->
+        <div class="card message">
+            <div class="controller">
+                <div class="caption">♪快来写下你对715的感想吧～</div>
+                <div class="input-wrap">
+                    <textarea class="comment" placeholder="祝王俊凯王源夏秋合唱九周年快乐！"
+                        oninput="highlyAdaptive(this), listenInput(this,'.btn_send')"></textarea>
+                    <div class="clean" hidden onclick="cleanInput(this,'textarea.comment','.btn_send')">×</div>
+                </div>
+                <div class="button btn_send disable" onclick="send(this)">收进心愿盒</div>
+            </div>
         </div>
     </div>
     <div class="footer" hidden>
-        <div>仅供学习，不可商用 🌈新浪微博@-萌虎牙宠奶源-</div>
-        <div>Copyright © 2021 KarRoy 凯源夏秋岛蟹圆证查询 粤ICP备2021023953号</div>
+        <div>仅供学习 不可商用 🌈新浪微博@-萌虎牙宠奶源-</div>
+        <div>Copyright © 2021 凯源夏秋岛 粤ICP备2021023953号</div>
     </div>
-
 
     <span class="w9">&nbsp;</span>
     <span class="pop">&nbsp;</span>
     <canvas hidden></canvas>
-
-    <!-- 采用登记ID-微博主页-岛民身份号码三者关联的绑定方式 -->
 
     <!-- =====JS===== -->
     <script src="./secret.config.js"></script>
