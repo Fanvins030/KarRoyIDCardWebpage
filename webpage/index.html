@@ -71,57 +71,120 @@
         <!-- 登记表tab -->
         <div class="card register" id="card">
             <div class="controller">
-                <div class="label require">1、你是否领取过2017年的蟹圆身份证</div>
-                <!-- 上传Lofter蟹圆证截图（在旁边放一个i示例） -->
-                <div class="radio-wrap">
-                    <label>
-                        <input type="radio" name="hasCard" id="yes">有
-                    </label>
-                    <label>
-                        <input type="radio" name="hasCard" id="no">没有
-                    </label>
+                <div class="topic">
+                    <div class="question require">
+                        <span>你有没有2017年的蟹圆身份证</span>
+                        <span class="i">i</span>
+                        <div class="example">
+                            <img
+                                src="https://cdn.jsdelivr.net/gh/Fanvins030/KarRoyIDCardWebpage/static/images/example.png">
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <div class="option">
+                            <input type="radio" name="hasCard" id="no" checked>
+                            <label for="no">
+                                <div class="label-wrap">没有</div>
+                            </label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" name="hasCard" id="yes">
+                            <label for="yes">
+                                <div class="label-wrap">有</div>
+                            </label>
+                        </div>
+                    </div>
                 </div>
-                <!-- 这里要自己写一个css美化单选框 -->
-
-                <div class="label require">2、请上传你的凯源超话等级页面的截图</div>
-                <input type="file" name="" id="">
-                <!-- 这里要自己写一个css美化四方框+加号 -->
-
-                <div class="label require">3、请输入你的姓名</div>
-                <div class="input-wrap">
-                    <input class="nickName" type="text" placeholder="微博ID或昵称（是印在蟹圆证上的哦）" oninput="listenInput(this)">
-                    <div class="clean" hidden onclick="cleanInput(this,'input.nickName','.btn_submit')">×</div>
+                <div class="topic">
+                    <div class="question require">(有)请上传你的2017年蟹圆身份证截图</div>
+                    <div class="answer">
+                        <div class="file-wrap">
+                            <input type="file" id="file1">
+                            <label for="file1">
+                                <div class="label-wrap"></div>
+                            </label>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="label require">4、请选择你的属性</div>
-                <div class="radio-wrap">
-                    <label>
-                        <input type="radio" name="attribute" id="kyo" checked>凯源唯
-                    </label>
-                    <label>
-                        <input type="radio" name="attribute" id="yko">源凯唯
-                    </label>
+                <div class="topic">
+                    <div class="question require">
+                        <span>(没有)请上传你的为爱发电链接</span>
+                        <span class="i">i</span>
+                        <div class="example">为爱发电：一种在力所能及的范围内支持/应援凯源的方式，如打榜、票房、公益、应援、代言、杂志、灯牌、晒单、产出等。</div>
+                    </div>
+                    <div class="answer">
+                        <div class="input-wrap">
+                            <input class="bill" type="text" placeholder="微博晒单链接(单链/合集)" oninput="listenInput(this)">
+                            <div class="clean" hidden onclick="cleanInput(this,'input.bill','.btn_submit')">×</div>
+                        </div>
+                        <div class="add"></div>
+                    </div>
                 </div>
-                <!-- 这里要自己写一个css美化单选框 -->
-
-                <div class="label require">5、请选择你的性别</div>
-                <div class="radio-wrap">
-                    <label>
-                        <input type="radio" name="gender" id="female" checked>女
-                    </label>
-                    <label>
-                        <input type="radio" name="gender" id="male">男
-                    </label>
+                <div class="topic">
+                    <div class="question require">请输入你的姓名</div>
+                    <div class="answer">
+                        <div class="input-wrap">
+                            <input class="nickName" type="text" placeholder="微博ID或昵称(是印在蟹圆证上的哦)"
+                                oninput="listenInput(this)">
+                            <div class="clean" hidden onclick="cleanInput(this,'input.nickName','.btn_submit')">×</div>
+                        </div>
+                    </div>
                 </div>
-                <!-- 这里要自己写一个css美化单选框 -->
-
-                <div class="label require">6、请复制粘贴你的微博主页地址</div>
-                <div class="input-wrap">
-                    <input class="address" type="text" placeholder="如：https://weibo.com/u/2531987600"
-                        oninput="listenInput(this)">
-                    <div class="clean" hidden onclick="cleanInput(this,'input.address','.btn_submit')">×</div>
+                <div class="topic">
+                    <div class="question require">请选择你的属性</div>
+                    <div class="answer">
+                        <div class="option">
+                            <input type="radio" name="attribute" id="kyo" checked>
+                            <label for="kyo">
+                                <div class="label-wrap">凯源唯</div>
+                            </label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" name="attribute" id="yko">
+                            <label for="yko">
+                                <div class="label-wrap">源凯唯</div>
+                            </label>
+                        </div>
+                    </div>
                 </div>
-
+                <div class="topic">
+                    <div class="question require">请选择你的性别</div>
+                    <div class="answer">
+                        <div class="option">
+                            <input type="radio" name="gender" id="female" checked>
+                            <label for="female">
+                                <div class="label-wrap">女</div>
+                            </label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" name="gender" id="male">
+                            <label for="male">
+                                <div class="label-wrap">男</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="topic">
+                    <div class="question require">请上传你的凯源超话等级截图</div>
+                    <div class="answer">
+                        <div class="file-wrap">
+                            <input type="file" id="file">
+                            <label for="file">
+                                <div class="label-wrap"></div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="topic">
+                    <div class="question require">请输入你的微博主页地址</div>
+                    <div class="answer">
+                        <div class="input-wrap">
+                            <input class="address" type="text" placeholder="如：https://weibo.com/u/2531987600"
+                                oninput="listenInput(this)">
+                            <div class="clean" hidden onclick="cleanInput(this,'input.address','.btn_submit')">×</div>
+                        </div>
+                    </div>
+                </div>
                 <div class="button btn_submit disable" onclick="submit(this)">提交申请</div>
             </div>
         </div>

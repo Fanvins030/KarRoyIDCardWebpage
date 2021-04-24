@@ -139,21 +139,153 @@ body {
 
             &.register {
                 .controller {
-                    .label {
-                        margin: 20px 0 10px 0;
+                    .topic {
                         position: relative;
 
-                        &.require::before {
-                            content: "*";
-                            margin-right: 3px;
-                            color: $--text-WARMING;
-                            position: absolute;
-                            top: 2px;
-                            left: -10px;
+                        &:nth-of-type(1) .question {
+                            margin-top: 0;
                         }
 
-                        &:nth-of-type(1) {
-                            margin-top: 0;
+                        .question {
+                            margin: 20px 0 10px 0;
+                            position: relative;
+
+                            &.require::before {
+                                content: "*";
+                                margin-right: 3px;
+                                color: $--text-WARMING;
+                                position: absolute;
+                                top: 2px;
+                                left: -10px;
+                            }
+
+                            .i {
+                                display: inline-block;
+                                width: 8px;
+                                height: 8px;
+                                line-height: 8px;
+                                text-align: center;
+                                padding: 2px;
+                                border: 1px solid $--text-WARMING;
+                                border-radius: 50%;
+                                color: $--text-WARMING;
+                                cursor: pointer;
+
+                                & + .example {
+                                    display: none;
+                                    padding: 10px;
+                                    background-color: $--bg-WHITE;
+                                    color: $--text-WARMING;
+                                    position: absolute;
+                                    left: -10px;
+                                    z-index: 10;
+                                }
+
+                                &:hover + .example {
+                                    display: block;
+                                }
+                            }
+                        }
+
+                        .answer {
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: center;
+
+                            .option {
+                                margin-right: 10px;
+                                display: flex;
+                                justify-content: flex-start;
+                                align-items: center;
+
+                                &:last-of-type {
+                                    margin-right: 0;
+                                }
+
+                                > input {
+                                    display: none;
+
+                                    & + label .label-wrap {
+                                        border: 1px solid $--border-GREY;
+                                        color: $--text-GREY;
+                                        border-radius: 5px;
+                                        padding: 5px 10px;
+                                        cursor: pointer;
+                                    }
+
+                                    &:checked + label .label-wrap {
+                                        border: 1px solid $--brand-DARK;
+                                        color: $--brand-DARK;
+                                    }
+                                }
+                            }
+
+                            .file-wrap {
+                                input {
+                                    display: none;
+                                }
+
+                                label {
+                                    .label-wrap {
+                                        width: 50px;
+                                        height: 50px;
+                                        border: 1px dashed $--border-GREY;
+                                        position: relative;
+                                        cursor: pointer;
+
+                                        &::before {
+                                            content: "";
+                                            width: 30px;
+                                            border-top: 1px solid $--border-GREY;
+                                            position: absolute;
+                                            top: 25px;
+                                            left: 10px;
+                                        }
+
+                                        &::after {
+                                            content: "";
+                                            height: 30px;
+                                            border-left: 1px solid $--border-GREY;
+                                            position: absolute;
+                                            top: 10px;
+                                            left: 25px;
+                                        }
+                                    }
+                                }
+                            }
+
+                            .add {
+                                width: 15px;
+                                height: 14px;
+                                text-align: center;
+                                margin-left: 10px;
+                                padding: 2px;
+                                background-color: $--brand-DARK;
+                                color: $--text-WHITE;
+                                border-radius: 50%;
+                                position: relative;
+                                cursor: pointer;
+
+                                &::before {
+                                    content: "";
+                                    display: block;
+                                    width: 10px;
+                                    border-top: 2px solid $--text-WHITE;
+                                    position: absolute;
+                                    top: 8px;
+                                    left: 4px;
+                                }
+
+                                &::after {
+                                    content: "";
+                                    display: block;
+                                    height: 10px;
+                                    border-left: 2px solid $--text-WHITE;
+                                    position: absolute;
+                                    top: 4px;
+                                    left: 8px;
+                                }
+                            }
                         }
                     }
 
@@ -174,6 +306,7 @@ body {
                             padding: 6px 32px 6px 12px;
                             box-sizing: border-box;
                             outline: none;
+                            resize: none;
                             border: none;
                             background-color: transparent;
                             overflow-y: hidden;
@@ -195,6 +328,7 @@ body {
                 }
 
                 .input-wrap {
+                    width: 100%;
                     line-height: 30px;
                     background-color: $--bg-GREY;
                     border: 1px solid transparent;
